@@ -40,6 +40,7 @@ CREATE TABLE usuario (
 
 CREATE TABLE tutor (
     id int PRIMARY KEY,
+    data_inicio timestamp NOT NULL,
     CONSTRAINT fk_id_tutor FOREIGN KEY (id) REFERENCES usuario(id)
 );
 
