@@ -73,15 +73,6 @@ CREATE TABLE rel_tutor_tutelado (
     CONSTRAINT fk_id_perfil FOREIGN KEY (id_perfil) REFERENCES perfil(id)
 );
 
--- Habilita
-CREATE TABLE rel_tutela_servico {
-    id_tutelado uuid NOT NULL,
-    id_servico uuid NOT NULL,
-    CONSTRAINT rel_tutela_servico_pk PRIMARY KEY (id_tutelado, id_servico)
-    CONSTRAINT fk_id_tutelado FOREIGN KEY (id_tutelado) REFERENCES rel_tutor_tutelado(id_tutelado)
-    CONSTRAINT fk_id_tutelado FOREIGN KEY (id_servico) REFERENCES servico(id_tutelado)
-}
-
 -- Identifica
 CREATE TABLE rel_exame_virus (
     id_exame uuid NOT NULL,
@@ -129,8 +120,8 @@ CREATE TABLE rel_usuario_servico (
 	id_servico uuid NOT NULL,
 	data_inicio timestamp,
 	data_fim timestamp,
+    CONSTRAINT fk_id_usuario FOREIGN KEY (id_usuario) REFERENCES usuario(id),
 	CONSTRAINT fk_id_servico FOREIGN KEY (id_servico) REFERENCES servico(id)
-	CONSTRAINT fk_id_usuario FOREIGN KEY (id_servico) REFERENCES usuario(id)
 );
 
 -- Restringe
@@ -138,6 +129,7 @@ CREATE TABLE rel_tutela_servico (
     id_tutelado uuid NOT NULL,
     id_servico uuid NOT NULL,
     CONSTRAINT rel_usuario_servico_pk PRIMARY KEY (id_tutelado, id_servico),
-    CONSTRAINT fk_id_usuario FOREIGN KEY (id_usuario) REFERENCES tutelado(id),
+    CONSTRAINT fk_id_tutelado FOREIGN KEY (id_tutelado) REFERENCES tutelado(id),
     CONSTRAINT fk_id_servico FOREIGN KEY (id_servico) REFERENCES servico(id)
 );
+
