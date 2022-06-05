@@ -39,14 +39,14 @@ CREATE TABLE usuario (
 );
 
 CREATE TABLE tutor (
-    id uuid NOT NULL,
+    id uuid PRIMARY KEY,
     CONSTRAINT fk_id_tutor FOREIGN KEY (id) REFERENCES usuario(id)
 );
 
 CREATE TABLE tutelado (
-    id uuid NOT NULL,
+    id uuid PRIMARY KEY,
     tipo text NOT NULL,
-    CONSTRAINT fk_id_tutelado FOREIGN KEY (id) REFERENCES usuario(id)         
+    CONSTRAINT fk_id_tutelado FOREIGN KEY (id) REFERENCES usuario(id)
 );
 
 CREATE TABLE perfil (
@@ -66,12 +66,21 @@ CREATE TABLE servico (
 -- Tutela
 CREATE TABLE rel_tutor_tutelado (
     id_tutor uuid NOT NULL,
-    id_tutelado uuid NOT NULL,
+    id_tutelado uuid PRIMARY KEY,
     id_perfil uuid NOT NULL,
-    CONSTRAINT fk_id_tutelado FOREIGN KEY (id_tutelado) REFERENCES tutelado(id),             
-    CONSTRAINT fk_id_tutor FOREIGN KEY (id_tutor) REFERENCES tutor(id),  
+    CONSTRAINT fk_id_tutelado FOREIGN KEY (id_tutelado) REFERENCES tutelado(id),
+    CONSTRAINT fk_id_tutor FOREIGN KEY (id_tutor) REFERENCES tutor(id),
     CONSTRAINT fk_id_perfil FOREIGN KEY (id_perfil) REFERENCES perfil(id)
 );
+
+-- Habilita
+CREATE TABLE rel_tutela_servico {
+    id_tutelado uuid NOT NULL,
+    id_servico uuid NOT NULL,
+    CONSTRAINT rel_tutela_servico_pk PRIMARY KEY (id_tutelado, id_servico)
+    CONSTRAINT fk_id_tutelado FOREIGN KEY (id_tutelado) REFERENCES rel_tutor_tutelado(id_tutelado)
+    CONSTRAINT fk_id_tutelado FOREIGN KEY (id_servico) REFERENCES servico(id_tutelado)
+}
 
 -- Identifica
 CREATE TABLE rel_exame_virus (
@@ -115,24 +124,20 @@ CREATE TABLE rel_usuario_perfil (
 );
 
 -- Audita
--- CREATE TABLE rel_usuario_perfil (
---     id_usuario uuid NOT NULL, 
---     id_servico uuid NOT NULL,
---     data_inicio timestamp,
---     data_fim timestamp,
---     CONSTRAINT fk_id_servico FOREIGN KEY (id_servico) REFERENCES servico(
---     -- Não há CONSTRAINT para "id_usuario" pois esse ID pode ser tanto da tabela 
---     -- "usuario" quanto da tabela "tutelado")
--- );
+CREATE TABLE rel_usuario_servico (
+	id_usuario uuid NOT NULL,
+	id_servico uuid NOT NULL,
+	data_inicio timestamp,
+	data_fim timestamp,
+	CONSTRAINT fk_id_servico FOREIGN KEY (id_servico) REFERENCES servico(id)
+	CONSTRAINT fk_id_usuario FOREIGN KEY (id_servico) REFERENCES usuario(id)
+);
 
 -- Restringe
 CREATE TABLE rel_tutela_servico (
     id_tutelado uuid NOT NULL,
-    id_perfil uuid NOT NULL,
     id_servico uuid NOT NULL,
-    CONSTRAINT rel_usuario_servico_pk PRIMARY KEY (id_perfil, id_servico),
+    CONSTRAINT rel_usuario_servico_pk PRIMARY KEY (id_tutelado, id_servico),
     CONSTRAINT fk_id_usuario FOREIGN KEY (id_usuario) REFERENCES tutelado(id),
-    CONSTRAINT fk_id_perfil FOREIGN KEY (id_perfil) REFERENCES tutelado(id_perfil),
     CONSTRAINT fk_id_servico FOREIGN KEY (id_servico) REFERENCES servico(id)
-    -- Olhar Telegram! 
 );
