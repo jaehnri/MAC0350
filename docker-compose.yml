@@ -11,6 +11,7 @@ services:
       - '5432:5432'
     volumes:
       - ./cria.sql:/docker-entrypoint-initdb.d/create_tables.sql
+      - ./popula.sql:/docker-entrypoint-initdb.d/populate_tables.sql
 volumes:
   db:
     driver: local
