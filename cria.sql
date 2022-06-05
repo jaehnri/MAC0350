@@ -47,7 +47,11 @@ CREATE TABLE tutor (
 CREATE TABLE tutelado (
     id int PRIMARY KEY,
     tipo text NOT NULL,
+    id_tutor int NOT NULL,
+    id_perfil int NOT NULL,
     CONSTRAINT fk_id_tutelado FOREIGN KEY (id) REFERENCES usuario(id)
+    CONSTRAINT fk_id_tutor FOREIGN KEY (id_tutor) REFERENCES tutor(id),
+    CONSTRAINT fk_id_perfil FOREIGN KEY (id_perfil) REFERENCES perfil(id)
 );
 
 CREATE TABLE perfil (
@@ -62,16 +66,6 @@ CREATE TABLE servico (
 );
 
 -- ==============================================================
-
--- Tutela
-CREATE TABLE rel_tutor_tutelado (
-    id_tutor int NOT NULL,
-    id_tutelado int PRIMARY KEY,
-    id_perfil int NOT NULL,
-    CONSTRAINT fk_id_tutelado FOREIGN KEY (id_tutelado) REFERENCES tutelado(id),
-    CONSTRAINT fk_id_tutor FOREIGN KEY (id_tutor) REFERENCES tutor(id),
-    CONSTRAINT fk_id_perfil FOREIGN KEY (id_perfil) REFERENCES perfil(id)
-);
 
 -- Identifica
 CREATE TABLE rel_exame_virus (

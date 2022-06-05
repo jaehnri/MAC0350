@@ -1,4 +1,4 @@
--- Exame
+-- EXAME
 INSERT INTO exame (id, tipo, descricao)
 VALUES (1, 'Hemograma', 'Avaliar saúde das hemácias, leucócitos e plaquetas.'),
        (2, 'Exame de urina', 'Detectar infecção urinária.'),
@@ -6,7 +6,7 @@ VALUES (1, 'Hemograma', 'Avaliar saúde das hemácias, leucócitos e plaquetas.'
        (4, 'PCR', 'Detectar COVID-19'),
        (5, 'Dosagem de anticorpos', 'Detectar a presença do HIV.');
 
--- Vírus
+-- VÍRUS
 INSERT INTO virus (id, nome)
 VALUES (1, 'HIV'),
        (2, 'COVID-19'),
@@ -14,7 +14,7 @@ VALUES (1, 'HIV'),
        (4, 'Poliovírus'),
        (5, 'Rotavírus');
 
--- Paciente
+-- PACIENTE
 INSERT INTO paciente (id, nome, endereco, data_nascimento)
 VALUES (1, 'João Henri Carrenho Rocha', 'Rua das Flores, 189', '2002-09-12 22:38:54.975379+00'),
        (2, 'Max Cabrajac Goritz', 'Rua das Amoras, 234', '2002-04-12 22:38:54.975379+00'),
@@ -22,14 +22,14 @@ VALUES (1, 'João Henri Carrenho Rocha', 'Rua das Flores, 189', '2002-09-12 22:3
        (4, 'Neide Franco Meneses', 'Rua do Carmo, 789', '2002-09-12 22:38:54.975379+00'),
        (5, 'Nicolas Henrique Carreiro', 'Rua das Naves, 123', '2002-09-12 22:38:54.975379+00');
 
--- Amostra
+-- AMOSTRA
 INSERT INTO amostra (id, tipo_material)
 VALUES (1, 'Fezes'),
        (2, 'Urina'),
        (3, 'Sangue'),
        (4, 'Saliva');
 
--- Identifica
+-- INDENTIFICA
 INSERT INTO rel_exame_virus (id_exame, id_virus)
 VALUES (1, 1), (1, 2), (1, 3), (1, 4), (1, 5),
        (2, 1), (2, 5),
@@ -37,13 +37,13 @@ VALUES (1, 1), (1, 2), (1, 3), (1, 4), (1, 5),
        (4, 2),
        (5, 1);
 
--- Instituto
+-- INSTITUTO
 INSERT INTO instituto (id, nome, endereco)
 VALUES (1, 'HUSP', 'Av. Prof. Lineu Prestes, 2565'),
        (2, 'Sirio-libanes', 'Rua Dona Adma Jafet, 91'),
        (3, 'Albert Einstein', 'Av. Albert Einstein, 627');
 
--- Usuario
+-- USUARIO
 INSERT INTO usuario (id, nome, endereco, data_nascimento, login, senha, id_instituto)
 VALUES (1, 'Mateus Cordeiro', 'Rua do Pao, 12', '2002-04-13 12:00:10.000000+00', 'pao', 'manteiga', 1),
        (2, 'Cícero Brandão' , 'Rua Benedita, 10', '2002-04-13 12:00:10.000000+00', 'cicero', '13042002', 1),
@@ -66,7 +66,7 @@ VALUES (1, 'Mateus Cordeiro', 'Rua do Pao, 12', '2002-04-13 12:00:10.000000+00',
        (19, 'Carlota Salgado Goulão', 'Rua de Mel, 534', '2002-09-12 22:38:54.975379+00', 'carlotagoulao', 'Senha123', 2),
        (20, 'Mila Maia Fazendeiro', 'Rua das Pedras, 11', '2002-09-12 22:38:54.975379+00', 'milamaia', 'Senha123', 3);
 
--- Perfil
+-- PERFIL
 INSERT INTO perfil (id, tipo)
 VALUES (1, 'Pesquisador'),
        (2, 'Atendente'),
@@ -74,7 +74,7 @@ VALUES (1, 'Pesquisador'),
        (4, 'Diretor'),
        (5, 'Coordenador');
 
--- Servico
+-- SERVICO
 INSERT INTO servico (id, nome, descricao)
 VALUES (1, 'InsExame', 'Inserir um novo tipo de exame'),
        (2, 'InsVirus', 'Inserir um novo tipo de virus'),
@@ -89,3 +89,37 @@ VALUES (1, 1), (1, 2),
        (3, 4), (3, 5),
        (4, 1), (4, 2), (4, 3), (4, 4), (4, 5),
        (5, 1), (5, 2), (5, 4), (5, 5);
+
+-- TEM-PERFIL
+INSERT INTO rel_usuario_perfil (id_usuario, id_perfil)
+VALUES (1, 1), (1, 4)
+       (2, 1), (2, 3), (2, 5)
+       (3, 1), (3, 3),
+       (4, 1),
+       (5, 1),
+       (6, 1),
+       (10, 2),
+       (11, 2),
+       (7, 3),
+       (8, 3),
+       (9, 3),
+       (10, 3),
+       (11, 3),
+       (12, 3),
+       (13, 2), (13, 3),
+       (14, 4),
+       (15, 1), (15, 5)
+       (16, 2),
+       (17, 3),
+       (18, 3),
+       (19, 1), (19, 2), (19, 3)
+       (20, 1), (20, 2), (20, 3), (20, 4);
+
+-- TUTOR
+INSERT INTO tutor (id, data_inicio)
+VALUES (1, '2012-03-12 22:38:54.975379+00')
+       (6, '2011-22-09 22:38:54.975379+00')
+       (11, '2012-10-11 22:38:54.975379+00')
+       (16, '2012-11-01 22:38:54.975379+00')
+
+-- TUTELADO
