@@ -10,21 +10,7 @@ services:
     ports:
       - '5432:5432'
     volumes:
-      - db:/var/lib/postgresql/data
-      - ./ep1.sql:/docker-entrypoint-initdb.d/create_tables.sql
+      - ./cria.sql:/docker-entrypoint-initdb.d/create_tables.sql
 volumes:
   db:
     driver: local
-
-# Subir: docker-compose up
-
-# Matar: docker-compose down
-# Matar tudo: docker-compose down --volumes
-
-# Pegar ID do container: docker ps
-
-# Entrar no docker: docker exec -ti <id> bash
-
-# Logar postgres: psql -U postgres
-
-# Rodar queries (nao esquecer do ;)
