@@ -124,7 +124,7 @@ CREATE TABLE rel_usuario_perfil (
 );
 
 -- Audita
-CREATE TABLE rel_usuario_perfil (
+CREATE TABLE rel_usuario_servico (
 	id_usuario uuid NOT NULL,
 	id_servico uuid NOT NULL,
 	data_inicio timestamp,
@@ -136,10 +136,8 @@ CREATE TABLE rel_usuario_perfil (
 -- Restringe
 CREATE TABLE rel_tutela_servico (
     id_tutelado uuid NOT NULL,
-    id_perfil uuid NOT NULL,
     id_servico uuid NOT NULL,
-    CONSTRAINT rel_usuario_servico_pk PRIMARY KEY (id_perfil, id_servico),
+    CONSTRAINT rel_usuario_servico_pk PRIMARY KEY (id_tutelado, id_servico),
     CONSTRAINT fk_id_usuario FOREIGN KEY (id_usuario) REFERENCES tutelado(id),
-    CONSTRAINT fk_id_perfil FOREIGN KEY (id_perfil) REFERENCES tutelado(id_perfil),
     CONSTRAINT fk_id_servico FOREIGN KEY (id_servico) REFERENCES servico(id)
 );
