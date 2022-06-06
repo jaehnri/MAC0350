@@ -113,7 +113,7 @@ CREATE TABLE rel_usuario_servico (
 	id_servico int NOT NULL,
 	data_inicio timestamp,
 	data_fim timestamp,
-    CONSTRAINT fk_id_usuario FOREIGN KEY (id_usuario) REFERENCES usuario(id),
+	CONSTRAINT fk_id_usuario FOREIGN KEY (id_usuario) REFERENCES usuario(id),
 	CONSTRAINT fk_id_servico FOREIGN KEY (id_servico) REFERENCES servico(id)
 );
 
