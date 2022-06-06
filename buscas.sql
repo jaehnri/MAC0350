@@ -1,14 +1,18 @@
 -- 4.1 Liste os serviços que podem ser utilizados por grupo de usuários.
-SELECT *
-FROM servico
-WHERE id IN
-    (SELECT DISTINCT ps.id_servico AS id
+SELECT u.id, s.id
+FROM servico AS s, usuario AS u
+WHERE u.id IN (17, 18) AND (u.id, s.id) IN
+    (SELECT u.id AS idu, DISTINCT ps.id_servico AS ids
      FROM usuario AS u,
           rel_usuario_perfil AS up,
           rel_perfil_servico AS ps
      WHERE u.id = up.id_usuario
-       AND up.id_perfil = ps.id_perfil
-       AND u.nome in ('Pedro', 'João', 'Max')
+       AND up.id_perfil = ps.id_perfil)
+   UNION
+    (SELECT t.id AS idu, DISTINCT ts.id_servico AS ids
+     FROM tutelado AS t,
+          rel_tutela_servico AS ts
+     WHERE t.id = ts.id)
 
 -- 4.2) Liste em ordem crescente o total de serviços utilizados agrupados pelos tipos de
 --      serviços disponíveis e pelo perfil dos usuários.
