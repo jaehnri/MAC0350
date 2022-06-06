@@ -21,6 +21,11 @@ Então, esse banco pode ser acessado executando como abaixo. As flags `i` e `t` 
 docker exec -ti mac0350_db_1 psql -U postgres
 ```
 
+É possível também executar todas as queries do exercício 4 (contidas em `buscas.sql`) da seguinte maneira:
+```
+cat buscas.sql | docker exec -i mac0350_db_1 psql -U postgres
+```
+
 Para matar o banco, execute:
 ```sh
 docker-compose down

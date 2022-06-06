@@ -1,9 +1,9 @@
-------------------------------------------------------------------------------------------
--- 4.1 Liste os serviços que podem ser utilizados por grupo de usuários.
-------------------------------------------------------------------------------------------
-
--- No caso, estamos considerando que (17, 18) corresponde ao grupo de usuários. 
--- Também estamos considerando que queremos a união dos serviços e não a interseção.
+\echo ------------------------------------------------------------------------------------------
+\echo -- 4.1 Liste os serviços que podem ser utilizados por grupo de usuários.
+\echo ------------------------------------------------------------------------------------------
+\echo -- No caso, estamos considerando que (17, 18) corresponde ao grupo de usuários. 
+\echo -- Também estamos considerando que queremos a união dos serviços e não a interseção.
+\echo
 
 SELECT DISTINCT s.*
 FROM servico AS s, usuario AS u
@@ -20,10 +20,13 @@ WHERE u.id IN (17, 18) AND (u.id, s.id) IN
           rel_tutela_servico AS ts
      WHERE t.id = ts.id_tutelado));
 
-------------------------------------------------------------------------------------------
--- 4.2) Liste em ordem crescente o total de serviços utilizados agrupados pelos tipos de
---      serviços disponíveis e pelo perfil dos usuários.
-------------------------------------------------------------------------------------------
+\echo 
+\echo
+\echo ------------------------------------------------------------------------------------------
+\echo -- 4.2) Liste em ordem crescente o total de serviços utilizados agrupados pelos tipos de
+\echo --      serviços disponíveis e pelo perfil dos usuários.
+\echo ------------------------------------------------------------------------------------------
+\echo
 
 WITH perfil_servico_usado AS
   (SELECT rup.id_perfil,
@@ -43,10 +46,13 @@ ORDER BY frequencia ASC,
          id_perfil ASC,
          id_servico ASC;
 
-------------------------------------------------------------------------------------------
--- 4.3) Liste todos os exames realizados, com seus respectivos tipos, bem como os seus
---      usuários com suas respectivas datas de coleta de amostras.
-------------------------------------------------------------------------------------------
+\echo 
+\echo
+\echo ------------------------------------------------------------------------------------------
+\echo -- 4.3) Liste todos os exames realizados, com seus respectivos tipos, bem como os seus
+\echo --      usuários com suas respectivas datas de coleta de amostras.
+\echo ------------------------------------------------------------------------------------------
+\echo
 
 SELECT e.tipo,
        p.nome,
@@ -56,9 +62,12 @@ FROM rel_paciente_amostra_exame aplicacao
 INNER JOIN exame e ON e.id = aplicacao.id_exame
 INNER JOIN paciente p ON p.id = aplicacao.id_paciente;
 
-------------------------------------------------------------------------------------------
--- 4.4) Liste os 2 exames realizados com maior frequência.
-------------------------------------------------------------------------------------------
+\echo 
+\echo
+\echo ------------------------------------------------------------------------------------------
+\echo -- 4.4) Liste os 2 exames realizados com maior frequência.
+\echo ------------------------------------------------------------------------------------------
+\echo 
 
 SELECT e.tipo, count(*) as frequencia
 FROM rel_paciente_amostra_exame aplicacao
