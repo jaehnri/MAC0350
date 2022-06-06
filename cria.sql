@@ -67,7 +67,7 @@ CREATE TABLE tutelado (
 
 -- ==============================================================
 
--- Identifica
+-- IDENTIFICA
 CREATE TABLE rel_exame_virus (
     id_exame int NOT NULL,
     id_virus int NOT NULL,
@@ -76,7 +76,7 @@ CREATE TABLE rel_exame_virus (
     CONSTRAINT fk_id_virus FOREIGN KEY (id_virus) REFERENCES virus(id)
 );
 
--- Aplicação
+-- APLICAÇÃO
 CREATE TABLE rel_paciente_amostra_exame (
     id_exame int NOT NULL,
     id_amostra int NOT NULL,
@@ -89,7 +89,7 @@ CREATE TABLE rel_paciente_amostra_exame (
     CONSTRAINT fk_id_paciente FOREIGN KEY (id_paciente) REFERENCES paciente(id)
 );
 
--- Habilita
+-- HABILITA
 CREATE TABLE rel_perfil_servico (
     id_perfil int NOT NULL,
     id_servico int NOT NULL,
@@ -98,7 +98,7 @@ CREATE TABLE rel_perfil_servico (
     CONSTRAINT fk_id_servico FOREIGN KEY (id_servico) REFERENCES servico(id)
 );
 
--- Tem-Perfil
+-- TEM-PERFIL
 CREATE TABLE rel_usuario_perfil (
     id_perfil int NOT NULL,
     id_usuario int NOT NULL,
@@ -107,7 +107,7 @@ CREATE TABLE rel_usuario_perfil (
     CONSTRAINT fk_id_usuario FOREIGN KEY (id_usuario) REFERENCES usuario(id)
 );
 
--- Audita
+-- AUDITA
 CREATE TABLE rel_usuario_servico (
 	id_usuario int NOT NULL,
 	id_servico int NOT NULL,
@@ -117,7 +117,7 @@ CREATE TABLE rel_usuario_servico (
 	CONSTRAINT fk_id_servico FOREIGN KEY (id_servico) REFERENCES servico(id)
 );
 
--- Restringe
+-- RESTRINGE
 CREATE TABLE rel_tutela_servico (
     id_tutelado int NOT NULL,
     id_servico int NOT NULL,
