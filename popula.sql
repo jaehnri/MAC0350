@@ -2,7 +2,7 @@
 INSERT INTO exame (id, tipo, descricao)
 VALUES (1, 'Hemograma', 'Avaliar saúde das hemácias, leucócitos e plaquetas.'),
        (2, 'Exame de urina', 'Detectar infecção urinária.'),
-       (3, 'Exame de fezes', 'De'),
+       (3, 'Exame de fezes', 'Detectar presença de vírus.'),
        (4, 'PCR', 'Detectar COVID-19'),
        (5, 'Dosagem de anticorpos', 'Detectar a presença do HIV.');
 
@@ -82,7 +82,7 @@ VALUES (1, 'InsExame', 'Inserir um novo tipo de exame'),
        (4, 'InsPaciente', 'Inserir um novo paciente'),
        (5, 'InsAplicacao', 'Inserir uma aplicacao de exame');
 
--- HABILITA
+-- Habilita
 INSERT INTO rel_perfil_servico (id_perfil, id_servico)
 VALUES (1, 1), (1, 2),
        (2, 4),
@@ -126,3 +126,19 @@ VALUES (5, "Aluno", 1, 1)
        (10, "Aprendiz", 6, 1)
        (12, "Irmão", 6, 1)
        (17, "Irmão", 16, 2)
+
+-- Aplicação
+INSERT INTO rel_paciente_amostra_exame (id_exame, id_amostra, id_paciente, data_exame, data_coleta)
+VALUES (1, 3, 1, '2022-04-13 12:00:10.000000+00', '2022-04-14 12:00:10.000000+00'),
+       (1, 3, 2, '2022-05-14 12:00:10.000000+00', '2022-04-15 12:00:10.000000+00'),
+       (1, 3, 3, '2022-06-15 12:00:10.000000+00', '2022-04-16 12:00:10.000000+00'),
+       (1, 3, 4, '2022-07-16 12:00:10.000000+00', '2022-04-17 12:00:10.000000+00'),
+       (1, 3, 5, '2022-08-17 12:00:10.000000+00', '2022-04-18 12:00:10.000000+00'),
+       (1, 3, 1, '2022-08-18 12:00:10.000000+00', '2022-04-19 12:00:10.000000+00'),
+       (2, 2, 2, '2022-08-19 12:00:10.000000+00', '2022-04-20 12:00:10.000000+00'),
+       (2, 2, 3, '2022-08-20 12:00:10.000000+00', '2022-04-21 12:00:10.000000+00'),
+       (2, 2, 4, '2022-08-21 12:00:10.000000+00', '2022-04-22 12:00:10.000000+00'),
+       (3, 1, 5, '2022-08-22 12:00:10.000000+00', '2022-04-23 12:00:10.000000+00'),
+       (3, 1, 1, '2022-08-23 12:00:10.000000+00', '2022-04-24 12:00:10.000000+00'),
+       (4, 4, 2, '2022-08-24 12:00:10.000000+00', '2022-04-25 12:00:10.000000+00'),
+       (5, 3, 3, '2022-08-25 12:00:10.000000+00', '2022-04-26 12:00:10.000000+00');

@@ -83,8 +83,7 @@ CREATE TABLE rel_paciente_amostra_exame (
     id_paciente int NOT NULL,
     data_exame timestamp,
     data_coleta timestamp,
-    resultado boolean,
-    CONSTRAINT rel_paciente_amostra_exame_pk PRIMARY KEY (id_exame, id_amostra, id_paciente),
+    CONSTRAINT rel_paciente_amostra_exame_pk PRIMARY KEY (id_exame, id_amostra, id_paciente, data_exame),
     CONSTRAINT fk_id_exame FOREIGN KEY (id_exame) REFERENCES exame(id),
     CONSTRAINT fk_id_amostra FOREIGN KEY (id_amostra) REFERENCES amostra(id),
     CONSTRAINT fk_id_paciente FOREIGN KEY (id_paciente) REFERENCES paciente(id)
@@ -114,7 +113,7 @@ CREATE TABLE rel_usuario_servico (
 	id_servico int NOT NULL,
 	data_inicio timestamp,
 	data_fim timestamp,
-   CONSTRAINT fk_id_usuario FOREIGN KEY (id_usuario) REFERENCES usuario(id),
+    CONSTRAINT fk_id_usuario FOREIGN KEY (id_usuario) REFERENCES usuario(id),
 	CONSTRAINT fk_id_servico FOREIGN KEY (id_servico) REFERENCES servico(id)
 );
 
