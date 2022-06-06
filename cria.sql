@@ -27,6 +27,17 @@ CREATE TABLE instituto (
     endereco text NOT NULL
 );
 
+CREATE TABLE perfil (
+    id int PRIMARY KEY,
+    tipo text NOT NULL
+);
+
+CREATE TABLE servico (
+    id int PRIMARY KEY,
+    nome text NOT NULL,
+    descricao text null
+);
+
 CREATE TABLE usuario (
     id int PRIMARY KEY,
     nome text NOT NULL,
@@ -49,20 +60,9 @@ CREATE TABLE tutelado (
     tipo text NOT NULL,
     id_tutor int NOT NULL,
     id_perfil int NOT NULL,
-    CONSTRAINT fk_id_tutelado FOREIGN KEY (id) REFERENCES usuario(id)
+    CONSTRAINT fk_id_tutelado FOREIGN KEY (id) REFERENCES usuario(id),
     CONSTRAINT fk_id_tutor FOREIGN KEY (id_tutor) REFERENCES tutor(id),
     CONSTRAINT fk_id_perfil FOREIGN KEY (id_perfil) REFERENCES perfil(id)
-);
-
-CREATE TABLE perfil (
-    id int PRIMARY KEY,
-    tipo text NOT NULL
-);
-
-CREATE TABLE servico (
-    id int PRIMARY KEY,
-    nome text NOT NULL,
-    descricao text null
 );
 
 -- ==============================================================

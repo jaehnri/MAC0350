@@ -35,19 +35,11 @@ WHERE pae.id_exame = e.id AND pae.id_paciente = p.id
 
 -- 4.4) Liste os 2 exames realizados com maior frequência.
 
-SELECT nome
+SELECT tipo
 FROM exame
-WHERE id IN (
-	SELECT TOP 2 id_exame AS id
-	FROM rel_paciente_amostra_exame
-	GROUP BY id_exame
-	ORDER BY COUNT(*) DESC
-)
-
--- ou, mas acho q n vai funcionar
-
-SELECT TOP 2 nome
-FROM rel_paciente_amostra_exame, exame
-WHERE id = id_exame
-GROUP BY id_exame
-ORDER BY COUNT(*) DESC
+WHERE id IN
+    (SELECT id_exame AS id
+     FROM rel_paciente_amostra_exame
+     GROUP BY id_exame
+     ORDER BY COUNT(*) DESC
+     LIMIT 2);
