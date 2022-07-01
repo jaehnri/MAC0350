@@ -2,14 +2,14 @@ import sys
 import random
 
 def sql(nomes, amizades, file):
-	string = "INSERT INTO pessoa (id, nome) VALUES "
+	string = "INSERT INTO person (id, name) VALUES "
 	for i in range(len(nomes)):
 		string = string + f"({i+1}, '{nomes[i][:-1]}'), "
 
 	string = string[:-2] + ';\n'
 
 
-	string += "INSERT INTO amigo (pessoa_id, amigo_id) VALUES "
+	string += "INSERT INTO person_friend (person_id, friend_id) VALUES "
 	for amg in amizades:
 		string = string + f"({amg[0]+1}, {amg[1]+1}), "
 
@@ -21,7 +21,7 @@ def sql(nomes, amizades, file):
 def neo4j(nomes, amizades, file):
 	string = "CREATE "
 	for i in range(len(nomes)):
-		string = string + f"(p{i + 1}:Person {{ name: '{nomes[i][:-1]}', id: {i} }}), "
+		string = string + f"(p{i + 1}:Person {{ name: '{nomes[i][:-1]}', id: {i + 1} }}), "
 
 	for amg in amizades:
 		string = string + f"(p{amg[0] + 1})-[:Amigo]->(p{amg[1] + 1}), "
