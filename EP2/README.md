@@ -62,5 +62,9 @@ A busca do exercício 4, isto é, do Neo4J, está no arquivo `neo4j/buscas.cql`.
 make ex4
 ```
 
+## Observações
+
+Se você alterar o nome da pasta EP2, será necessário atualizar o make pois isso alterará o nome dos containers criados pelo docker-compose.
+
 
 Boa correção!
